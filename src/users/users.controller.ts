@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { UsersService } from './users.service';
 
@@ -9,13 +9,16 @@ export class UsersController {
 
   @Get()
   @ApiOperation({ summary: 'List users' })
-  list() {
-    return this.usersService.list();
+  list(
+    @Query('page') page = '1',
+    @Query('limit') limit = '20',
+  ) {
+    return this.usersService.findAll(Number(page), Number(limit));
   }
 
   @Get(':id')
   @ApiOperation({ summary: 'Get user details' })
   detail(@Param('id') id: string) {
-    return this.usersService.detail(id);
+    return this.usersService.findById(id);
   }
 }

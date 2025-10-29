@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { OrdersService } from './orders.service';
 
@@ -9,8 +9,8 @@ export class OrdersController {
 
   @Get()
   @ApiOperation({ summary: 'List orders' })
-  list() {
-    return this.ordersService.list();
+  list(@Query('page') page = '1', @Query('limit') limit = '20') {
+    return this.ordersService.list(Number(page), Number(limit));
   }
 
   @Get(':id')
