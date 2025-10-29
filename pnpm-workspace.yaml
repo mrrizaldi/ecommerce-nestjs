@@ -1,2 +1,2 @@
 ignoredBuiltDependencies:
-  - bcrypt
+  - '@node-rs/bcrypt'
