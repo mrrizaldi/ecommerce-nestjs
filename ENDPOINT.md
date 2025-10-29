@@ -10,6 +10,8 @@ Fokus pada **performa**, **keamanan**, dan **skalabilitas**. Endpoint inti ini m
 | -------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | **POST** | `/auth/register` | Registrasi user baru dengan validasi email dan password. Password di-hash menggunakan **bcrypt + salt**. Kirim email verifikasi. |
 | **POST** | `/auth/login`    | Autentikasi dan generate **JWT** + refresh token.                                                                                |
+| **GET**  | `/users`         | [Admin] List seluruh user dengan pagination. Dilindungi dengan **JWT Guard** + **Roles Guard (ADMIN)**.                          |
+| **GET**  | `/users/:id`     | [Admin] Detail user tertentu. Dilindungi dengan **JWT Guard** + **Roles Guard (ADMIN)**.                                         |
 | **GET**  | `/users/me`      | Mengambil profil user yang sedang login. Dilindungi dengan **JWT Guard**.                                                        |
 | **PUT**  | `/users/me`      | Update profil user. Gunakan **DTO**, **ValidationPipe**, dan sanitasi input untuk mencegah XSS.                                  |
 

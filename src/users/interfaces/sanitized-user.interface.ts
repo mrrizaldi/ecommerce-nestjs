@@ -1,4 +1,4 @@
-import { Address, Cart, Order } from '@prisma/client';
+import { Address, Cart, Order, Role } from '@prisma/client';
 
 export interface SanitizedUser {
   id: string;
@@ -6,6 +6,7 @@ export interface SanitizedUser {
   fullName?: string | null;
   phone?: string | null;
   isActive: boolean;
+  role: Role;
   createdAt: Date;
   updatedAt: Date;
   addresses?: Address[];

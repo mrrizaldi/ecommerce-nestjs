@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
+import { IUsersRepository } from './interfaces/users.repository.interface';
 
 @Injectable()
-export class UsersRepository {
+export class UsersRepository implements IUsersRepository {
   constructor(private readonly prisma: PrismaService) {}
 
   async findById(id: string) {
@@ -29,23 +30,16 @@ export class UsersRepository {
     });
   }
 
-  async create(data: Prisma.UserCreateInput) {
-    return this.prisma.user.create({
-      data,
-    });
+  async create(args: Prisma.UserCreateArgs) {
+    return this.prisma.user.create(args);
   }
 
-  async update(id: string, data: Prisma.UserUpdateInput) {
-    return this.prisma.user.update({
-      where: { id },
-      data,
-    });
+  async update(args: Prisma.UserUpdateArgs) {
+    return this.prisma.user.update(args);
   }
 
-  async delete(id: string) {
-    return this.prisma.user.delete({
-      where: { id },
-    });
+  async delete(args: Prisma.UserDeleteArgs) {
+    return this.prisma.user.delete(args);
   }
 
   async findAll(page = 1, limit = 20) {
@@ -62,6 +56,7 @@ export class UsersRepository {
           fullName: true,
           phone: true,
           isActive: true,
+          role: true,
           createdAt: true,
           updatedAt: true,
         },

@@ -5,14 +5,16 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { hash } from '@node-rs/bcrypt';
+import { Role } from '@prisma/client';
 import {
   IUsersRepository,
   USERS_REPOSITORY,
 } from './interfaces/users.repository.interface';
+import { IUsersService } from './interfaces/users.service.interface';
 import { SanitizedUser } from './interfaces/sanitized-user.interface';
 
 @Injectable()
-export class UsersService {
+export class UsersService implements IUsersService {
   constructor(
     @Inject(USERS_REPOSITORY) private readonly usersRepository: IUsersRepository,
   ) {}
@@ -37,7 +39,8 @@ export class UsersService {
   async create(data: {
     email: string;
     password: string;
-    fullName?: string;
+    fullName?: string | null;
+    role?: Role;
   }): Promise<SanitizedUser> {
     const existing = await this.usersRepository.findByEmail(data.email);
     if (existing) {
@@ -51,6 +54,7 @@ export class UsersService {
         email: data.email,
         passwordHash,
         fullName: data.fullName,
+        role: data.role ?? Role.USER,
       },
     });
 

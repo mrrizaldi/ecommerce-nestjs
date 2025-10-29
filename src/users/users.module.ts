@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { PrismaModule } from '../prisma/prisma.module';
+import { RolesGuard } from '../common/guards/roles.guard';
 import { USERS_REPOSITORY } from './interfaces/users.repository.interface';
 import { USERS_SERVICE } from './interfaces/users.service.interface';
 import { UsersController } from './users.controller';
@@ -18,6 +19,7 @@ import { UsersService } from './users.service';
       provide: USERS_REPOSITORY,
       useClass: UsersRepository,
     },
+    RolesGuard,
   ],
   exports: [USERS_SERVICE],
 })
