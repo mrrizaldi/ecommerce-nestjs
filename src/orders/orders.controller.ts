@@ -1,0 +1,21 @@
+import { Controller, Get, Param } from '@nestjs/common';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { OrdersService } from './orders.service';
+
+@ApiTags('orders')
+@Controller('orders')
+export class OrdersController {
+  constructor(private readonly ordersService: OrdersService) {}
+
+  @Get()
+  @ApiOperation({ summary: 'List orders' })
+  list() {
+    return this.ordersService.list();
+  }
+
+  @Get(':id')
+  @ApiOperation({ summary: 'Get order details' })
+  detail(@Param('id') id: string) {
+    return this.ordersService.detail(id);
+  }
+}

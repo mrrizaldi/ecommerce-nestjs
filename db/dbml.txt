@@ -1,0 +1,278 @@
+Project ecommerce {
+  database_type: "PostgreSQL"
+}
+
+/* =========================
+   Enums
+   ========================= */
+
+Enum product_status {
+  DRAFT
+  ACTIVE
+  ARCHIVED
+}
+
+Enum order_status {
+  PENDING_PAYMENT   // order dibuat, menunggu bayar
+  PAID              // pembayaran sukses (captured/settled)
+  CANCELED          // dibatalkan sebelum/di luar capture
+  REFUNDED          // refund penuh
+  COMPLETED         // pesanan selesai (diterima)
+}
+
+Enum payment_status {
+  PENDING     // invoice dibuat, belum ada otorisasi
+  AUTHORIZED  // dana ditahan (optional, tergantung gateway)
+  CAPTURED    // dana ditarik/settled
+  FAILED      // gagal bayar atau ditolak
+  REFUNDED    // dikembalikan (penuh)
+}
+
+Enum shipment_status {
+  READY       // siap dikirim/packing
+  SHIPPED     // di kurir
+  DELIVERED   // diterima
+  RETURNED    // dikembalikan
+}
+
+Enum inv_movement_reason {
+  ORDER_ALLOC     // alokasi stok saat order dibuat
+  ORDER_CANCEL    // stok dikembalikan karena cancel
+  ORDER_SHIP      // stok terpotong saat benar-benar dikirim
+  RESTOCK         // masuk stok dari supplier/retur
+  MANUAL_ADJUST   // koreksi manual (audit)
+}
+
+/* =========================
+   Core Tables
+   ========================= */
+
+Table users {
+  id uuid [pk]
+  email text [unique, not null]
+  password_hash text [not null]
+  full_name text
+  phone text
+  is_active bool [default: true, not null]
+  created_at timestamptz [default: `now()`, not null]
+  updated_at timestamptz [default: `now()`, not null]
+
+  Indexes {
+    email [unique, name: 'uniq_users_email']
+  }
+}
+
+Table addresses {
+  id uuid [pk]
+  user_id uuid [ref: > users.id] // optional: allow NULL for guest address reuse
+  label text // "rumah", "kantor"
+  recipient text
+  phone text
+  line1 text
+  line2 text
+  city text
+  province text
+  postal_code text
+  country_code char(2)
+  is_default bool [default: false, not null]
+  created_at timestamptz [default: `now()`, not null]
+  updated_at timestamptz [default: `now()`, not null]
+
+  Indexes {
+    (user_id, is_default) [name: 'idx_addresses_user_default']
+  }
+}
+
+Table categories {
+  id uuid [pk]
+  name text [not null]
+  slug text [unique, not null]
+  parent_id uuid [ref: > categories.id] // self-referencing
+
+  Indexes {
+    slug [unique, name: 'uniq_categories_slug']
+    parent_id [name: 'idx_categories_parent']
+  }
+}
+
+Table products {
+  id uuid [pk]
+  title text [not null]
+  slug text [unique, not null]
+  description text
+  brand text
+  status product_status [not null, default: 'ACTIVE']
+  created_at timestamptz [default: `now()`, not null]
+  updated_at timestamptz [default: `now()`, not null]
+
+  Indexes {
+    slug [unique, name: 'uniq_products_slug']
+    (status, created_at) [name: 'idx_products_status_created']
+  }
+}
+
+Table product_variants {
+  id uuid [pk]
+  product_id uuid [not null, ref: > products.id]
+  sku text [unique, not null]
+  title text
+  price numeric(12,2) [not null]   // gunakan numeric untuk uang
+  currency char(3) [not null]
+  weight_grams int
+  created_at timestamptz [default: `now()`, not null]
+  updated_at timestamptz [default: `now()`, not null]
+
+  Indexes {
+    sku [unique, name: 'uniq_variants_sku']
+    product_id [name: 'idx_variants_product']
+  }
+}
+
+Table product_categories {
+  product_id uuid [not null, ref: > products.id]
+  category_id uuid [not null, ref: > categories.id]
+
+  Indexes {
+    (product_id, category_id) [pk, name: 'pk_product_categories']
+    (category_id, product_id) [name: 'idx_category_product']
+  }
+}
+
+Table inventory_stock {
+  variant_id uuid [pk, ref: > product_variants.id]
+  quantity int [not null, default: 0]
+  updated_at timestamptz [default: `now()`, not null]
+
+  Note: 'CHECK (quantity >= 0) to be enforced in migration (DBML lacks CHECK support).'
+
+  Indexes {
+    variant_id [name: 'idx_stock_variant']
+  }
+}
+
+Table inventory_movements {
+  id uuid [pk]
+  variant_id uuid [not null, ref: > product_variants.id]
+  delta int [not null] // + restock, - allocate/ship
+  reason inv_movement_reason [not null]
+  order_id uuid [ref: > orders.id]
+  created_at timestamptz [default: `now()`, not null]
+
+  Indexes {
+    (variant_id, created_at) [name: 'idx_movements_variant_time']
+    order_id [name: 'idx_movements_order']
+  }
+}
+
+Table carts {
+  id uuid [pk]
+  user_id uuid [not null, ref: > users.id]
+  is_checked_out bool [not null, default: false]
+  checked_out_order_id uuid [ref: > orders.id] // nullable until checkout
+  currency char(3)
+  created_at timestamptz [default: `now()`, not null]
+  updated_at timestamptz [default: `now()`, not null]
+
+  Indexes {
+    user_id [name: 'idx_carts_user']
+    // NOTE: implement in migration as partial unique index:
+    // UNIQUE(user_id) WHERE is_checked_out = false
+  }
+}
+
+Table cart_items {
+  id uuid [pk]
+  cart_id uuid [not null, ref: > carts.id]
+  variant_id uuid [not null, ref: > product_variants.id]
+  quantity int [not null, default: 1]
+
+  Indexes {
+    (cart_id, variant_id) [unique, name: 'uniq_cart_variant']
+    cart_id [name: 'idx_cart_items_cart']
+  }
+}
+
+Table orders {
+  id uuid [pk]
+  code text [unique, not null] // short human-friendly code
+  user_id uuid [ref: > users.id]
+  status order_status [not null, default: 'PENDING_PAYMENT'] // simple FSM
+  cart_id uuid [ref: > carts.id]
+  billing_address_id uuid [ref: > addresses.id]
+  shipping_address_id uuid [ref: > addresses.id]
+  currency char(3) [not null]
+  subtotal_amount numeric(12,2) [not null, default: 0]
+  shipping_amount numeric(12,2) [not null, default: 0]
+  discount_amount numeric(12,2) [not null, default: 0]
+  total_amount numeric(12,2) [not null, default: 0]
+  placed_at timestamptz
+  created_at timestamptz [default: `now()`, not null]
+  updated_at timestamptz [default: `now()`, not null]
+
+  Note: 'Add CHECK: total_amount = subtotal_amount + shipping_amount - discount_amount (in migration)'
+
+  Indexes {
+    code [unique, name: 'uniq_orders_code']
+    (user_id, status, created_at) [name: 'idx_orders_user_status_created']
+  }
+}
+
+Table order_items {
+  id uuid [pk]
+  order_id uuid [not null, ref: > orders.id]
+  variant_id uuid [not null, ref: > product_variants.id]
+  sku text [not null]
+  product_title text
+  variant_title text
+  price numeric(12,2) [not null]
+  quantity int [not null]
+  total numeric(12,2) [not null]
+
+  Note: 'Add CHECK: total = price * quantity (in migration)'
+
+  Indexes {
+    order_id [name: 'idx_order_items_order']
+    (variant_id, order_id) [name: 'idx_order_items_variant_order']
+  }
+}
+
+Table payments {
+  id uuid [pk]
+  order_id uuid [not null, ref: > orders.id]
+  provider text       // 'midtrans', 'xendit', etc.
+  status payment_status [not null]
+  amount numeric(12,2) [not null]
+  currency char(3) [not null]
+  transaction_id text [unique] // from payment gateway
+  idempotency_key text [unique] // server-side retry safety
+  created_at timestamptz [default: `now()`, not null]
+  updated_at timestamptz [default: `now()`, not null]
+
+  Indexes {
+    transaction_id [unique, name: 'uniq_payments_txid']
+    idempotency_key [unique, name: 'uniq_payments_idemp']
+    order_id [name: 'idx_payments_order']
+  }
+}
+
+Table shipments {
+  id uuid [pk]
+  order_id uuid [not null, ref: > orders.id]
+  status shipment_status [not null, default: 'READY']
+  courier text
+  tracking_number text
+  shipped_at timestamptz
+
+  Indexes {
+    order_id [name: 'idx_shipments_order']
+    tracking_number [name: 'idx_shipments_tracking']
+  }
+}
+
+Table idempotency_keys {
+  key text [pk]
+  scope text        // 'ORDER_CREATE','PAYMENT_CAPTURE'
+  request_hash text // hash of payload for verification
+  response jsonb
+  created_at timestamptz [default: `now()`, not null]
+}
