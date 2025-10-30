@@ -10,6 +10,7 @@ import type { Cache } from 'cache-manager';
 import { ConfigService } from '@nestjs/config';
 import { Prisma } from '@prisma/client';
 import { createHash } from 'crypto';
+import { faker } from '@faker-js/faker';
 import { AddCartItemDto } from './dto/add-cart-item.dto';
 import { CartEntity } from './entities/cart.entity';
 import { CartItemEntity } from './entities/cart-item.entity';
@@ -244,14 +245,15 @@ export class CartService {
         if (error.code === 'P2023') {
           throw new BadRequestException('Invalid variant ID format');
         }
-        if (error.code === 'P2003') {
-          if (error.meta?.constraint === 'carts_user_id_fkey') {
-            throw new NotFoundException('User not found');
-          }
-          if (error.meta?.constraint === 'cart_items_cart_id_fkey') {
-            throw new NotFoundException('Cart not found');
-          }
-        }
+        // Temporarily re-throw original P2003 for debugging cart_items_cart_id_fkey
+        // if (error.code === 'P2003') {
+        //   if (error.meta?.constraint === 'carts_user_id_fkey') {
+        //     throw new NotFoundException('User not found');
+        //   }
+        //   if (error.meta?.constraint === 'cart_items_cart_id_fkey') {
+        //     throw new NotFoundException('Cart not found');
+        //   }
+        // }
       }
       throw error;
     }
@@ -363,7 +365,7 @@ export class CartService {
 
   private emptyCart(userId: string): CartEntity {
     return new CartEntity({
-      id: null,
+      id: faker.string.uuid(), // Generate a valid UUID for empty cart
       userId,
       currency: null,
       items: [],
