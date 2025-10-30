@@ -7,6 +7,7 @@ import { parseJwtExpiresIn } from '../common/utils/jwt';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { JwtStrategy } from './strategies/jwt.strategy';
+import { AUTH_SERVICE } from './interfaces/auth.service.interface';
 
 @Module({
   imports: [
@@ -26,7 +27,13 @@ import { JwtStrategy } from './strategies/jwt.strategy';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, JwtStrategy],
-  exports: [AuthService],
+  providers: [
+    {
+      provide: AUTH_SERVICE,
+      useClass: AuthService,
+    },
+    JwtStrategy,
+  ],
+  exports: [AUTH_SERVICE],
 })
 export class AuthModule {}

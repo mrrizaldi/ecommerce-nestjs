@@ -21,11 +21,11 @@ Fokus pada **performa**, **keamanan**, dan **skalabilitas**. Endpoint inti ini m
 
 | Method     | Endpoint              | Deskripsi                                                                                                                                                    |
 | ---------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **GET**    | `/products`           | Menampilkan daftar produk dengan **filter kategori, harga, dan pencarian**. Gunakan **query params**, **pagination**, dan caching **(cache-aside pattern)**. |
+| **GET**    | `/products`           | Menampilkan daftar produk dengan **filter kategori, harga, dan pencarian**. Gunakan **query params** (`page`, `limit`, `search`, `categoryIds`, `minPrice`, `maxPrice`, `sort`), **pagination**, dan caching **(cache-aside pattern)**. |
 | **GET**    | `/products/:id`       | Menampilkan detail produk. Cache hasil per produk.                                                                                                           |
-| **POST**   | `/admin/products`     | [Admin] Tambah produk baru. Butuh otorisasi role admin.                                                                                                      |
-| **PUT**    | `/admin/products/:id` | [Admin] Update data produk.                                                                                                                                  |
-| **DELETE** | `/admin/products/:id` | [Admin] Hapus produk.                                                                                                                                        |
+| **POST**   | `/admin/products`     | [Admin] Tambah produk baru. Dilindungi **JWT Guard + Roles Guard (ADMIN)**.                                                                                  |
+| **PUT**    | `/admin/products/:id` | [Admin] Update data produk. Dilindungi **JWT Guard + Roles Guard (ADMIN)**.                                                                                  |
+| **DELETE** | `/admin/products/:id` | [Admin] Hapus produk. Dilindungi **JWT Guard + Roles Guard (ADMIN)**.                                                                                        |
 
 ---
 
@@ -33,7 +33,7 @@ Fokus pada **performa**, **keamanan**, dan **skalabilitas**. Endpoint inti ini m
 
 | Method     | Endpoint          | Deskripsi                                                                                       |
 | ---------- | ----------------- | ----------------------------------------------------------------------------------------------- |
-| **POST**   | `/cart/items`     | Tambah item ke keranjang. Pastikan stok tersedia. Gunakan **idempotency key** agar tidak dobel. |
+| **POST**   | `/cart/items`     | Tambah item ke keranjang. Pastikan stok tersedia. Gunakan header **Idempotency-Key** agar tidak dobel. |
 | **GET**    | `/cart`           | Lihat isi keranjang. Simpan data di **Redis** untuk performa cepat.                             |
 | **DELETE** | `/cart/items/:id` | Hapus item dari keranjang.                                                                      |
 

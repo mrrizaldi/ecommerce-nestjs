@@ -1,3 +1,4 @@
+import { CacheModule } from '@nestjs/cache-manager';
 import { Module } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -19,6 +20,44 @@ import { PrismaModule } from './prisma/prisma.module';
       validationSchema: envValidationSchema,
       validationOptions: {
         abortEarly: false,
+      },
+    }),
+    CacheModule.registerAsync({
+      isGlobal: true,
+      inject: [ConfigService],
+      useFactory: async (config: ConfigService) => {
+        const ttlSeconds = config.get<number>('CACHE_TTL_SECONDS', 60);
+        const ttl = ttlSeconds * 1000;
+        const redisUrl = config.get<string>('REDIS_URL');
+
+        if (redisUrl) {
+          try {
+            const [{ default: KeyvRedis }, { default: Keyv }] = await Promise.all([
+              import('@keyv/redis'),
+              import('keyv'),
+            ]);
+
+            const redisStore = new KeyvRedis(redisUrl);
+            const keyvInstance = new Keyv({
+              store: redisStore,
+              namespace: 'ecom:',
+            });
+
+            return {
+              stores: [keyvInstance],
+              ttl,
+            };
+          } catch (error) {
+            console.warn(
+              'Redis cache store initialization failed. Falling back to in-memory cache.',
+              error instanceof Error ? error.message : error,
+            );
+          }
+        }
+
+        return {
+          ttl,
+        };
       },
     }),
     ThrottlerModule.forRootAsync({

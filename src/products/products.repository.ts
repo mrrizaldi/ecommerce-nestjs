@@ -1,6 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
+import { ProductsSortOption } from './dto/get-products-query.dto';
+
+type ProductListFilters = {
+  page?: number;
+  limit?: number;
+  search?: string;
+  status?: string;
+  categoryIds?: string[];
+  minPrice?: number;
+  maxPrice?: number;
+  sort?: ProductsSortOption;
+};
 
 @Injectable()
 export class ProductsRepository {
@@ -42,38 +54,77 @@ export class ProductsRepository {
     });
   }
 
-  async findAll(filters: {
-    page?: number;
-    limit?: number;
-    search?: string;
-    status?: string;
-    categoryIds?: string[];
-  }) {
-    const { page = 1, limit = 20, search, status, categoryIds } = filters;
+  async findAll(filters: ProductListFilters) {
+    const {
+      page = 1,
+      limit = 20,
+      search,
+      status,
+      categoryIds,
+      minPrice,
+      maxPrice,
+      sort = ProductsSortOption.NEWEST,
+    } = filters;
     const skip = (page - 1) * limit;
 
-    const where: Prisma.ProductWhereInput = {
-      AND: [
-        search
-          ? {
-              OR: [
-                { title: { contains: search, mode: 'insensitive' } },
-                { description: { contains: search, mode: 'insensitive' } },
-              ],
-            }
-          : {},
-        status ? { status } : {},
-        categoryIds?.length
-          ? {
-              productCategories: {
-                some: {
-                  categoryId: { in: categoryIds },
-                },
-              },
-            }
-          : {},
-      ],
-    };
+    const andFilters: Prisma.ProductWhereInput[] = [];
+
+    if (search) {
+      andFilters.push({
+        OR: [
+          { title: { contains: search, mode: 'insensitive' } },
+          { description: { contains: search, mode: 'insensitive' } },
+        ],
+      });
+    }
+
+    if (status) {
+      andFilters.push({ status });
+    }
+
+    if (categoryIds?.length) {
+      andFilters.push({
+        productCategories: {
+          some: {
+            categoryId: { in: categoryIds },
+          },
+        },
+      });
+    }
+
+    if (minPrice !== undefined || maxPrice !== undefined) {
+      andFilters.push({
+        variants: {
+          some: {
+            price: {
+              ...(minPrice !== undefined
+                ? { gte: new Prisma.Decimal(minPrice) }
+                : {}),
+              ...(maxPrice !== undefined
+                ? { lte: new Prisma.Decimal(maxPrice) }
+                : {}),
+            },
+          },
+        },
+      });
+    }
+
+    const where: Prisma.ProductWhereInput =
+      andFilters.length > 0 ? { AND: andFilters } : {};
+
+    const orderBy = (() => {
+      switch (sort) {
+        case ProductsSortOption.OLDEST:
+          return { createdAt: Prisma.SortOrder.asc };
+        case ProductsSortOption.PRICE_ASC:
+          return { variants: { _min: { price: Prisma.SortOrder.asc } } };
+        case ProductsSortOption.PRICE_DESC:
+          return { variants: { _max: { price: Prisma.SortOrder.desc } } };
+        case ProductsSortOption.NEWEST:
+        default:
+          return { createdAt: Prisma.SortOrder.desc };
+      }
+    })() as Prisma.ProductOrderByWithRelationInput;
 
     const [products, total] = await Promise.all([
       this.prisma.product.findMany({
@@ -92,7 +143,7 @@ export class ProductsRepository {
             },
           },
         },
-        orderBy: { createdAt: 'desc' },
+        orderBy,
       }),
       this.prisma.product.count({ where }),
     ]);
@@ -148,6 +199,18 @@ export class ProductsRepository {
   async delete(id: string) {
     return this.prisma.product.delete({
       where: { id },
+      include: {
+        variants: {
+          include: {
+            inventoryStock: true,
+          },
+        },
+        productCategories: {
+          include: {
+            category: true,
+          },
+        },
+      },
     });
   }
 

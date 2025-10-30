@@ -8,6 +8,10 @@ export const envValidationSchema = Joi.object({
   CORS_ORIGINS: Joi.string().optional(),
   THROTTLE_TTL: Joi.number().default(60000),
   THROTTLE_LIMIT: Joi.number().default(100),
+  CACHE_TTL_SECONDS: Joi.number().min(1).default(60),
+  REDIS_URL: Joi.string()
+    .uri({ scheme: ['redis', 'rediss'] })
+    .optional(),
 
   // Database
   DATABASE_URL: Joi.string().required(),

@@ -23,7 +23,7 @@ export class AuthService {
     @Inject(USERS_SERVICE) private readonly usersService: IUsersService,
     private readonly jwtService: JwtService,
     private readonly configService: ConfigService,
-  ) {}
+  ) { }
 
   async register(dto: RegisterDto) {
     const user = await this.usersService.create({
@@ -52,15 +52,16 @@ export class AuthService {
     }
 
     const user = await this.usersService.findById(existing.id);
+    if (!user) {
+      // This case should theoretically not be reached if logic is sound,
+      // but it handles the type error and potential race conditions.
+      throw new UnauthorizedException('User not found after validation');
+    }
     return this.buildAuthResponse(user);
   }
 
   async buildAuthResponse(user: SanitizedUser) {
-    const payload: JwtPayload = {
-      sub: user.id,
-      email: user.email,
-      role: user.role,
-    };
+    const payload: JwtPayload = { sub: user.id, email: user.email };
     const { accessToken, refreshToken } = await this.generateTokens(payload);
 
     return {
