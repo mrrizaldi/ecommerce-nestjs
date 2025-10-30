@@ -218,7 +218,7 @@ describe('Cart Error Handling (e2e)', () => {
         });
 
       // Note: Due to test isolation issues, we accept various response codes
-      expect([200, 201, 401, 500]).toContain(firstResponse.status);
+      expect([200, 201]).toContain(firstResponse.status);
 
       // Duplicate request with same idempotency key
       const secondResponse = await request(server)
@@ -232,7 +232,7 @@ describe('Cart Error Handling (e2e)', () => {
 
       // Should return same result, not create duplicate
       // Note: Due to foreign key issues in test isolation, we accept both success and error states
-      expect([200, 201, 401, 500]).toContain(secondResponse.status);
+      expect([200, 201]).toContain(secondResponse.status);
     });
   });
 

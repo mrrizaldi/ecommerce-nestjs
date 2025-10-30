@@ -103,8 +103,9 @@ export class CartService {
       }
     }
 
-    const cartRecord = (await this.prisma.$transaction(async (tx) => {
-        // Validate UUID format
+    try {
+      const cartRecord = (await this.prisma.$transaction(async (tx) => {
+        // Validate UUID format for variantId
         const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
         if (!uuidRegex.test(dto.variantId)) {
           throw new BadRequestException('Invalid variant ID format');
@@ -217,72 +218,88 @@ export class CartService {
         return updatedCart as CartWithItems;
       })) as CartWithItems;
 
-    const cartEntity = this.toCartEntity(cartRecord, userId);
-    const serializedCart = this.serializeCart(cartEntity);
+      const cartEntity = this.toCartEntity(cartRecord, userId);
+      const serializedCart = this.serializeCart(cartEntity);
 
-    await this.cacheManager.set(cacheKey, serializedCart, this.cacheTtlMs);
+      await this.cacheManager.set(cacheKey, serializedCart, this.cacheTtlMs);
 
-    if (idempotencyKey) {
-      await this.prisma.idempotencyKey.upsert({
-        where: { key: idempotencyKey },
-        update: {
-          response: serializedCart,
-        },
-        create: {
-          key: idempotencyKey,
-          scope,
-          requestHash,
-          response: serializedCart,
-        },
-      });
+      if (idempotencyKey) {
+        await this.prisma.idempotencyKey.upsert({
+          where: { key: idempotencyKey },
+          update: {
+            response: serializedCart,
+          },
+          create: {
+            key: idempotencyKey,
+            scope,
+            requestHash,
+            response: serializedCart,
+          },
+        });
+      }
+
+      return cartEntity;
+    } catch (error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        if (error.code === 'P2023') {
+          throw new BadRequestException('Invalid variant ID format');
+        }
+        if (error.code === 'P2003') {
+          if (error.meta?.constraint === 'carts_user_id_fkey') {
+            throw new NotFoundException('User not found');
+          }
+          if (error.meta?.constraint === 'cart_items_cart_id_fkey') {
+            throw new NotFoundException('Cart not found');
+          }
+        }
+      }
+      throw error;
     }
-
-    return cartEntity;
   }
 
   async removeItem(userId: string, itemId: string): Promise<CartEntity> {
-    // Validate UUID format
-    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
-    if (!uuidRegex.test(userId)) {
-      throw new BadRequestException('Invalid user ID format');
-    }
-    if (!uuidRegex.test(itemId)) {
-      throw new BadRequestException('Invalid item ID format');
-    }
-
     const cacheKey = this.buildCacheKey(userId);
-    const cart = await this.prisma.cart.findFirst({
-      where: { userId, isCheckedOut: false },
-    });
+    try {
+      const cart = await this.prisma.cart.findFirst({
+        where: { userId, isCheckedOut: false },
+      });
 
-    if (!cart) {
-      throw new NotFoundException('Active cart not found');
+      if (!cart) {
+        throw new NotFoundException('Active cart not found');
+      }
+
+      const deleteResult = await this.prisma.cartItem.deleteMany({
+        where: {
+          id: itemId,
+          cartId: cart.id,
+        },
+      });
+
+      if (deleteResult.count === 0) {
+        throw new NotFoundException('Cart item not found');
+      }
+
+      const updatedCart = await this.prisma.cart.findUnique({
+        where: { id: cart.id },
+        include: this.cartInclude,
+      });
+
+      const cartEntity = this.toCartEntity(updatedCart, userId);
+      await this.cacheManager.set(
+        cacheKey,
+        this.serializeCart(cartEntity),
+        this.cacheTtlMs,
+      );
+
+      return cartEntity;
+    } catch (error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        if (error.code === 'P2023') {
+          throw new BadRequestException('Invalid identifier format');
+        }
+      }
+      throw error;
     }
-
-    const deleteResult = await this.prisma.cartItem.deleteMany({
-      where: {
-        id: itemId,
-        cartId: cart.id,
-      },
-    });
-
-    if (deleteResult.count === 0) {
-      throw new NotFoundException('Cart item not found');
-    }
-
-    const updatedCart = await this.prisma.cart.findUnique({
-      where: { id: cart.id },
-      include: this.cartInclude,
-    });
-
-    const cartEntity = this.toCartEntity(updatedCart, userId);
-    await this.cacheManager.set(
-      cacheKey,
-      this.serializeCart(cartEntity),
-      this.cacheTtlMs,
-    );
-
-    return cartEntity;
   }
 
   private buildCacheKey(userId: string) {

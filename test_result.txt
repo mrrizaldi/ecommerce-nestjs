@@ -1,0 +1,1048 @@
+
+> ecommerce-api@0.0.1 test:e2e /home/mrrizaldi/dev/backend/ecommerce-api
+> jest --config ./test/jest-e2e.json
+
+[03:30:05.841] [32mINFO[39m: [36mrequest errored[39m
+    [35mreq[39m: {
+      "id": "req-1",
+      "method": "GET",
+      "url": "/health",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:42449",
+        "accept-encoding": "gzip, deflate",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 50424
+    }
+    [35mrequestId[39m: "req-1"
+    [35mres[39m: {
+      "statusCode": 503,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 10
+    err: {
+      "type": "Error",
+      "message": "failed with status code 503",
+      "stack":
+          Error: failed with status code 503
+              at onResFinished (/home/mrrizaldi/dev/backend/ecommerce-api/node_modules/.pnpm/pino-http@10.5.0/node_modules/pino-http/logger.js:115:39)
+              at ServerResponse.onResponseComplete (/home/mrrizaldi/dev/backend/ecommerce-api/node_modules/.pnpm/pino-http@10.5.0/node_modules/pino-http/logger.js:178:14)
+              at ServerResponse.emit (node:events:531:35)
+              at onFinish (node:_http_outgoing:1082:10)
+              at callback (node:internal/streams/writable:766:21)
+              at afterWrite (node:internal/streams/writable:710:5)
+              at afterWriteTick (node:internal/streams/writable:696:10)
+              at processTicksAndRejections (node:internal/process/task_queues:89:21)
+    }
+[03:30:05.850] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-2",
+      "method": "GET",
+      "url": "/health/readiness",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:32875",
+        "accept-encoding": "gzip, deflate",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 59528
+    }
+    [35mrequestId[39m: "req-2"
+    [35mres[39m: {
+      "statusCode": 200,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 0
+[03:30:05.986] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-1",
+      "method": "POST",
+      "url": "/auth/register",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:36705",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "96",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 55688
+    }
+    [35mrequestId[39m: "req-1"
+    [35mres[39m: {
+      "statusCode": 201,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 360
+[03:30:06.434] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-2",
+      "method": "POST",
+      "url": "/auth/login",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:40655",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "68",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 47930
+    }
+    [35mrequestId[39m: "req-2"
+    [35mres[39m: {
+      "statusCode": 200,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 445
+[03:30:06.413] [32mINFO[39m: [36mrequest errored[39m
+    [35mreq[39m: {
+      "id": "req-1",
+      "method": "GET",
+      "url": "/health",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:38149",
+        "accept-encoding": "gzip, deflate",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 43418
+    }
+    [35mrequestId[39m: "req-1"
+    [35mres[39m: {
+      "statusCode": 503,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 9
+    err: {
+      "type": "Error",
+      "message": "failed with status code 503",
+      "stack":
+          Error: failed with status code 503
+              at onResFinished (/home/mrrizaldi/dev/backend/ecommerce-api/node_modules/.pnpm/pino-http@10.5.0/node_modules/pino-http/logger.js:115:39)
+              at ServerResponse.onResponseComplete (/home/mrrizaldi/dev/backend/ecommerce-api/node_modules/.pnpm/pino-http@10.5.0/node_modules/pino-http/logger.js:178:14)
+              at ServerResponse.emit (node:events:531:35)
+              at onFinish (node:_http_outgoing:1082:10)
+              at callback (node:internal/streams/writable:766:21)
+              at afterWrite (node:internal/streams/writable:710:5)
+              at afterWriteTick (node:internal/streams/writable:696:10)
+              at processTicksAndRejections (node:internal/process/task_queues:89:21)
+    }
+[03:30:06.398] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-1",
+      "method": "POST",
+      "url": "/auth/register",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:34321",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "89",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 60092
+    }
+    [35mrequestId[39m: "req-1"
+    [35mres[39m: {
+      "statusCode": 201,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 424
+[03:30:06.973] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-2",
+      "method": "POST",
+      "url": "/auth/register",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:37297",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "97",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 47580
+    }
+    [35mrequestId[39m: "req-2"
+    [35mres[39m: {
+      "statusCode": 201,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 547
+[03:30:07.095] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-2",
+      "method": "POST",
+      "url": "/auth/login",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:34301",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "65",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 33294
+    }
+    [35mrequestId[39m: "req-2"
+    [35mres[39m: {
+      "statusCode": 200,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 613
+[03:30:07.321] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-3",
+      "method": "POST",
+      "url": "/auth/register",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:44795",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "89",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 52894
+    }
+    [35mrequestId[39m: "req-3"
+    [35mres[39m: {
+      "statusCode": 201,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 223
+[03:30:07.017] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-3",
+      "method": "POST",
+      "url": "/cart/items",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:41487",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "65",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 51022
+    }
+    [35mrequestId[39m: "req-3"
+    [35mres[39m: {
+      "statusCode": 401,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 1
+[03:30:07.410] [32mINFO[39m: [36mrequest errored[39m
+    [35mreq[39m: {
+      "id": "req-4",
+      "method": "POST",
+      "url": "/cart/items",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:37985",
+        "accept-encoding": "gzip, deflate",
+        "idempotency-key": "cart-error-test-invalid-variant",
+        "content-type": "application/json",
+        "content-length": "52",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 47190
+    }
+    [35mrequestId[39m: "req-4"
+    [35mres[39m: {
+      "statusCode": 500,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 391
+    err: {
+      "type": "Error",
+      "message": "failed with status code 500",
+      "stack":
+          Error: failed with status code 500
+              at onResFinished (/home/mrrizaldi/dev/backend/ecommerce-api/node_modules/.pnpm/pino-http@10.5.0/node_modules/pino-http/logger.js:115:39)
+              at ServerResponse.onResponseComplete (/home/mrrizaldi/dev/backend/ecommerce-api/node_modules/.pnpm/pino-http@10.5.0/node_modules/pino-http/logger.js:178:14)
+              at ServerResponse.emit (node:events:531:35)
+              at onFinish (node:_http_outgoing:1082:10)
+              at callback (node:internal/streams/writable:766:21)
+              at afterWrite (node:internal/streams/writable:710:5)
+              at afterWriteTick (node:internal/streams/writable:696:10)
+              at processTicksAndRejections (node:internal/process/task_queues:89:21)
+    }
+[03:30:07.350] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-3",
+      "method": "POST",
+      "url": "/auth/login",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:39819",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "70",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 51558
+    }
+    [35mrequestId[39m: "req-3"
+    [35mres[39m: {
+      "statusCode": 200,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 375
+[03:30:07.571] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-4",
+      "method": "POST",
+      "url": "/auth/login",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:45573",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "63",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 57074
+    }
+    [35mrequestId[39m: "req-4"
+    [35mres[39m: {
+      "statusCode": 200,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 249
+[03:30:07.740] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-4",
+      "method": "GET",
+      "url": "/products",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:45653",
+        "accept-encoding": "gzip, deflate",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 60406
+    }
+    [35mrequestId[39m: "req-4"
+    [35mres[39m: {
+      "statusCode": 200,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 388
+[03:30:07.946] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-5",
+      "method": "GET",
+      "url": "/products/8d5d87ba-9704-4bd6-9ea2-c3f2e768555a",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:41019",
+        "accept-encoding": "gzip, deflate",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 49850
+    }
+    [35mrequestId[39m: "req-5"
+    [35mres[39m: {
+      "statusCode": 200,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 203
+[03:30:07.950] [32mINFO[39m: [36mrequest errored[39m
+    [35mreq[39m: {
+      "id": "req-5",
+      "method": "POST",
+      "url": "/admin/products",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:40063",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "99",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 40888
+    }
+    [35mrequestId[39m: "req-5"
+    [35mres[39m: {
+      "statusCode": 500,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 375
+    err: {
+      "type": "Error",
+      "message": "failed with status code 500",
+      "stack":
+          Error: failed with status code 500
+              at onResFinished (/home/mrrizaldi/dev/backend/ecommerce-api/node_modules/.pnpm/pino-http@10.5.0/node_modules/pino-http/logger.js:115:39)
+              at ServerResponse.onResponseComplete (/home/mrrizaldi/dev/backend/ecommerce-api/node_modules/.pnpm/pino-http@10.5.0/node_modules/pino-http/logger.js:178:14)
+              at ServerResponse.emit (node:events:531:35)
+              at onFinish (node:_http_outgoing:1082:10)
+              at callback (node:internal/streams/writable:766:21)
+              at afterWrite (node:internal/streams/writable:710:5)
+              at afterWriteTick (node:internal/streams/writable:696:10)
+              at processTicksAndRejections (node:internal/process/task_queues:89:21)
+    }
+[03:30:08.041] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-6",
+      "method": "POST",
+      "url": "/admin/products",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:39811",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "57",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 44350
+    }
+    [35mrequestId[39m: "req-6"
+    [35mres[39m: {
+      "statusCode": 403,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 85
+[03:30:08.043] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-7",
+      "method": "POST",
+      "url": "/admin/products",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:40955",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "52",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 52588
+    }
+    [35mrequestId[39m: "req-7"
+    [35mres[39m: {
+      "statusCode": 401,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 0
+[03:30:08.113] [32mINFO[39m: [36mrequest errored[39m
+    [35mreq[39m: {
+      "id": "req-8",
+      "method": "POST",
+      "url": "/admin/products",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:46695",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "40",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 42394
+    }
+    [35mrequestId[39m: "req-8"
+    [35mres[39m: {
+      "statusCode": 500,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 68
+    err: {
+      "type": "Error",
+      "message": "failed with status code 500",
+      "stack":
+          Error: failed with status code 500
+              at onResFinished (/home/mrrizaldi/dev/backend/ecommerce-api/node_modules/.pnpm/pino-http@10.5.0/node_modules/pino-http/logger.js:115:39)
+              at ServerResponse.onResponseComplete (/home/mrrizaldi/dev/backend/ecommerce-api/node_modules/.pnpm/pino-http@10.5.0/node_modules/pino-http/logger.js:178:14)
+              at ServerResponse.emit (node:events:531:35)
+              at onFinish (node:_http_outgoing:1082:10)
+              at callback (node:internal/streams/writable:766:21)
+              at afterWrite (node:internal/streams/writable:710:5)
+              at afterWriteTick (node:internal/streams/writable:696:10)
+              at processTicksAndRejections (node:internal/process/task_queues:89:21)
+    }
+[03:30:08.107] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-6",
+      "method": "GET",
+      "url": "/cart",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:39849",
+        "accept-encoding": "gzip, deflate",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 55348
+    }
+    [35mrequestId[39m: "req-6"
+    [35mres[39m: {
+      "statusCode": 200,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 158
+[03:30:08.242] [32mINFO[39m: [36mrequest errored[39m
+    [35mreq[39m: {
+      "id": "req-9",
+      "method": "PUT",
+      "url": "/admin/products/undefined",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:40691",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "46",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 56010
+    }
+    [35mrequestId[39m: "req-9"
+    [35mres[39m: {
+      "statusCode": 500,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 119
+    err: {
+      "type": "Error",
+      "message": "failed with status code 500",
+      "stack":
+          Error: failed with status code 500
+              at onResFinished (/home/mrrizaldi/dev/backend/ecommerce-api/node_modules/.pnpm/pino-http@10.5.0/node_modules/pino-http/logger.js:115:39)
+              at ServerResponse.onResponseComplete (/home/mrrizaldi/dev/backend/ecommerce-api/node_modules/.pnpm/pino-http@10.5.0/node_modules/pino-http/logger.js:178:14)
+              at ServerResponse.emit (node:events:531:35)
+              at onFinish (node:_http_outgoing:1082:10)
+              at callback (node:internal/streams/writable:766:21)
+              at afterWrite (node:internal/streams/writable:710:5)
+              at afterWriteTick (node:internal/streams/writable:696:10)
+              at processTicksAndRejections (node:internal/process/task_queues:89:21)
+    }
+[03:30:08.320] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-a",
+      "method": "PUT",
+      "url": "/admin/products/undefined",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:38811",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "30",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 45592
+    }
+    [35mrequestId[39m: "req-a"
+    [35mres[39m: {
+      "statusCode": 403,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 75
+[03:30:08.398] [32mINFO[39m: [36mrequest errored[39m
+    [35mreq[39m: {
+      "id": "req-b",
+      "method": "PUT",
+      "url": "/admin/products/non-existent-id",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:45167",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "30",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 55590
+    }
+    [35mrequestId[39m: "req-b"
+    [35mres[39m: {
+      "statusCode": 500,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 77
+    err: {
+      "type": "Error",
+      "message": "failed with status code 500",
+      "stack":
+          Error: failed with status code 500
+              at onResFinished (/home/mrrizaldi/dev/backend/ecommerce-api/node_modules/.pnpm/pino-http@10.5.0/node_modules/pino-http/logger.js:115:39)
+              at ServerResponse.onResponseComplete (/home/mrrizaldi/dev/backend/ecommerce-api/node_modules/.pnpm/pino-http@10.5.0/node_modules/pino-http/logger.js:178:14)
+              at ServerResponse.emit (node:events:531:35)
+              at onFinish (node:_http_outgoing:1082:10)
+              at callback (node:internal/streams/writable:766:21)
+              at afterWrite (node:internal/streams/writable:710:5)
+              at afterWriteTick (node:internal/streams/writable:696:10)
+              at processTicksAndRejections (node:internal/process/task_queues:89:21)
+    }
+[03:30:08.500] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-c",
+      "method": "DELETE",
+      "url": "/admin/products/undefined",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:40351",
+        "accept-encoding": "gzip, deflate",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 53812
+    }
+    [35mrequestId[39m: "req-c"
+    [35mres[39m: {
+      "statusCode": 403,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 100
+[03:30:08.474] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-5",
+      "method": "POST",
+      "url": "/cart/items",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:34345",
+        "accept-encoding": "gzip, deflate",
+        "idempotency-key": "cart-error-test-zero-qty",
+        "content-type": "application/json",
+        "content-length": "65",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 39458
+    }
+    [35mrequestId[39m: "req-5"
+    [35mres[39m: {
+      "statusCode": 201,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 1057
+[03:30:08.576] [32mINFO[39m: [36mrequest errored[39m
+    [35mreq[39m: {
+      "id": "req-d",
+      "method": "DELETE",
+      "url": "/admin/products/undefined",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:34403",
+        "accept-encoding": "gzip, deflate",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 36578
+    }
+    [35mrequestId[39m: "req-d"
+    [35mres[39m: {
+      "statusCode": 500,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 75
+    err: {
+      "type": "Error",
+      "message": "failed with status code 500",
+      "stack":
+          Error: failed with status code 500
+              at onResFinished (/home/mrrizaldi/dev/backend/ecommerce-api/node_modules/.pnpm/pino-http@10.5.0/node_modules/pino-http/logger.js:115:39)
+              at ServerResponse.onResponseComplete (/home/mrrizaldi/dev/backend/ecommerce-api/node_modules/.pnpm/pino-http@10.5.0/node_modules/pino-http/logger.js:178:14)
+              at ServerResponse.emit (node:events:531:35)
+              at onFinish (node:_http_outgoing:1082:10)
+              at callback (node:internal/streams/writable:766:21)
+              at afterWrite (node:internal/streams/writable:710:5)
+              at afterWriteTick (node:internal/streams/writable:696:10)
+              at processTicksAndRejections (node:internal/process/task_queues:89:21)
+    }
+[03:30:08.662] [32mINFO[39m: [36mrequest errored[39m
+    [35mreq[39m: {
+      "id": "req-e",
+      "method": "DELETE",
+      "url": "/admin/products/undefined",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:41943",
+        "accept-encoding": "gzip, deflate",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 47726
+    }
+    [35mrequestId[39m: "req-e"
+    [35mres[39m: {
+      "statusCode": 500,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 83
+    err: {
+      "type": "Error",
+      "message": "failed with status code 500",
+      "stack":
+          Error: failed with status code 500
+              at onResFinished (/home/mrrizaldi/dev/backend/ecommerce-api/node_modules/.pnpm/pino-http@10.5.0/node_modules/pino-http/logger.js:115:39)
+              at ServerResponse.onResponseComplete (/home/mrrizaldi/dev/backend/ecommerce-api/node_modules/.pnpm/pino-http@10.5.0/node_modules/pino-http/logger.js:178:14)
+              at ServerResponse.emit (node:events:531:35)
+              at onFinish (node:_http_outgoing:1082:10)
+              at callback (node:internal/streams/writable:766:21)
+              at afterWrite (node:internal/streams/writable:710:5)
+              at afterWriteTick (node:internal/streams/writable:696:10)
+              at processTicksAndRejections (node:internal/process/task_queues:89:21)
+    }
+[03:30:09.182] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-6",
+      "method": "POST",
+      "url": "/cart/items",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:38935",
+        "accept-encoding": "gzip, deflate",
+        "idempotency-key": "cart-error-test-negative-qty",
+        "content-type": "application/json",
+        "content-length": "66",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 45690
+    }
+    [35mrequestId[39m: "req-6"
+    [35mres[39m: {
+      "statusCode": 201,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 705
+[03:30:09.226] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-7",
+      "method": "POST",
+      "url": "/cart/items",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:44957",
+        "accept-encoding": "gzip, deflate",
+        "idempotency-key": "cart-error-test-exceed-stock",
+        "content-type": "application/json",
+        "content-length": "67",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 44884
+    }
+    [35mrequestId[39m: "req-7"
+    [35mres[39m: {
+      "statusCode": 401,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 30
+[03:30:09.258] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-8",
+      "method": "POST",
+      "url": "/cart/items",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:37753",
+        "accept-encoding": "gzip, deflate",
+        "idempotency-key": "cart-error-test-valid-add",
+        "content-type": "application/json",
+        "content-length": "65",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 35340
+    }
+    [35mrequestId[39m: "req-8"
+    [35mres[39m: {
+      "statusCode": 401,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 30
+[03:30:09.296] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-9",
+      "method": "POST",
+      "url": "/cart/items",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:41921",
+        "accept-encoding": "gzip, deflate",
+        "idempotency-key": "cart-error-test-idempotent",
+        "content-type": "application/json",
+        "content-length": "65",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 40810
+    }
+    [35mrequestId[39m: "req-9"
+    [35mres[39m: {
+      "statusCode": 401,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 34
+[03:30:09.304] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-a",
+      "method": "DELETE",
+      "url": "/cart/items/some-item-id",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:34679",
+        "accept-encoding": "gzip, deflate",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 33126
+    }
+    [35mrequestId[39m: "req-a"
+    [35mres[39m: {
+      "statusCode": 401,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 1
+[03:30:09.339] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-b",
+      "method": "DELETE",
+      "url": "/cart/items/non-existent-item-id",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:34619",
+        "accept-encoding": "gzip, deflate",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 46928
+    }
+    [35mrequestId[39m: "req-b"
+    [35mres[39m: {
+      "statusCode": 401,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 34
+[03:30:09.380] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-c",
+      "method": "GET",
+      "url": "/cart",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:45263",
+        "accept-encoding": "gzip, deflate",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 34806
+    }
+    [35mrequestId[39m: "req-c"
+    [35mres[39m: {
+      "statusCode": 401,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 35
+[03:30:09.603] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-d",
+      "method": "POST",
+      "url": "/auth/register",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:43927",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "98",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 51220
+    }
+    [35mrequestId[39m: "req-d"
+    [35mres[39m: {
+      "statusCode": 201,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 217
+[03:30:09.890] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-e",
+      "method": "POST",
+      "url": "/auth/login",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:40817",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "69",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 37890
+    }
+    [35mrequestId[39m: "req-e"
+    [35mres[39m: {
+      "statusCode": 200,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 285
+[03:30:09.989] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-f",
+      "method": "GET",
+      "url": "/cart",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:37969",
+        "accept-encoding": "gzip, deflate",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 33616
+    }
+    [35mrequestId[39m: "req-f"
+    [35mres[39m: {
+      "statusCode": 200,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 96
+[03:30:10.058] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-g",
+      "method": "GET",
+      "url": "/cart",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:42059",
+        "accept-encoding": "gzip, deflate",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 55950
+    }
+    [35mrequestId[39m: "req-g"
+    [35mres[39m: {
+      "statusCode": 401,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 0
+[03:30:09.259] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-7",
+      "method": "POST",
+      "url": "/cart/items",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:38839",
+        "accept-encoding": "gzip, deflate",
+        "idempotency-key": "e2e-cart-add",
+        "content-type": "application/json",
+        "content-length": "65",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 60674
+    }
+    [35mrequestId[39m: "req-7"
+    [35mres[39m: {
+      "statusCode": 201,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 1151
+[03:30:09.296] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-8",
+      "method": "GET",
+      "url": "/cart",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:41175",
+        "accept-encoding": "gzip, deflate",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 44166
+    }
+    [35mrequestId[39m: "req-8"
+    [35mres[39m: {
+      "statusCode": 401,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 33
+[03:30:09.340] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-9",
+      "method": "GET",
+      "url": "/orders",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:40297",
+        "accept-encoding": "gzip, deflate",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 35914
+    }
+    [35mrequestId[39m: "req-9"
+    [35mres[39m: {
+      "statusCode": 401,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 37
+[03:30:09.381] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-a",
+      "method": "GET",
+      "url": "/orders/undefined",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:38267",
+        "accept-encoding": "gzip, deflate",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 34506
+    }
+    [35mrequestId[39m: "req-a"
+    [35mres[39m: {
+      "statusCode": 401,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 34
+[03:30:09.424] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-b",
+      "method": "GET",
+      "url": "/cart",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:44627",
+        "accept-encoding": "gzip, deflate",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 35588
+    }
+    [35mrequestId[39m: "req-b"
+    [35mres[39m: {
+      "statusCode": 401,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 38
+ ELIFECYCLE  Command failed with exit code 1.

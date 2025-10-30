@@ -24,6 +24,9 @@ const createPrismaMock = () => {
     productVariant: {
       findUnique: jest.fn(),
     },
+    user: {
+      findUnique: jest.fn(),
+    },
     cart: {
       findUnique: jest.fn(),
       findFirst: jest.fn(),
@@ -161,6 +164,7 @@ describe('CartService', () => {
           },
         ],
       });
+      prisma.user.findUnique.mockResolvedValue({ id: 'user-1' });
     });
 
     it('returns cached response when idempotency key matches previous request', async () => {

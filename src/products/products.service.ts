@@ -133,6 +133,9 @@ export class ProductsService {
   }
 
   async create(dto: CreateProductDto) {
+    if (dto.price === undefined) {
+      throw new BadRequestException('Product price is required.');
+    }
     const slug = this.slugify(dto.name);
     const sku = `${slug}-${Date.now()}`;
 

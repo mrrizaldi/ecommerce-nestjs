@@ -1,0 +1,1044 @@
+
+> ecommerce-api@0.0.1 test:e2e /home/mrrizaldi/dev/backend/ecommerce-api
+> jest --config ./test/jest-e2e.json
+
+PASS test/app.e2e-spec.ts
+  ● Console
+
+    console.log
+      ✅ Database connected successfully
+
+      at Proxy.onModuleInit (../src/prisma/prisma.service.ts:26:13)
+          at async Promise.all (index 0)
+
+    console.log
+      🔌 Database connection closed
+
+      at Proxy.onModuleDestroy (../src/prisma/prisma.service.ts:31:13)
+          at async Promise.all (index 0)
+
+[05:19:52.722] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-1",
+      "method": "GET",
+      "url": "/health",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:42931",
+        "accept-encoding": "gzip, deflate",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 38304
+    }
+    [35mrequestId[39m: "req-1"
+    [35mres[39m: {
+      "statusCode": 200,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 3
+[05:19:52.727] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-2",
+      "method": "GET",
+      "url": "/health/readiness",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:41331",
+        "accept-encoding": "gzip, deflate",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 52644
+    }
+    [35mrequestId[39m: "req-2"
+    [35mres[39m: {
+      "statusCode": 200,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 0
+[05:19:53.036] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-1",
+      "method": "POST",
+      "url": "/auth/register",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:38853",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "89",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 59456
+    }
+    [35mrequestId[39m: "req-1"
+    [35mres[39m: {
+      "statusCode": 201,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 328
+[05:19:53.449] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-2",
+      "method": "POST",
+      "url": "/auth/login",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:45697",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "65",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 44288
+    }
+    [35mrequestId[39m: "req-2"
+    [35mres[39m: {
+      "statusCode": 200,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 347
+[05:19:53.179] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-1",
+      "method": "GET",
+      "url": "/health",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:37249",
+        "accept-encoding": "gzip, deflate",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 49642
+    }
+    [35mrequestId[39m: "req-1"
+    [35mres[39m: {
+      "statusCode": 200,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 2
+[05:19:53.582] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-2",
+      "method": "POST",
+      "url": "/auth/register",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:37849",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "97",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 57082
+    }
+    [35mrequestId[39m: "req-2"
+    [35mres[39m: {
+      "statusCode": 201,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 399
+[05:19:53.177] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-1",
+      "method": "POST",
+      "url": "/auth/register",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:45409",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "96",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 49016
+    }
+    [35mrequestId[39m: "req-1"
+    [35mres[39m: {
+      "statusCode": 201,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 307
+[05:19:53.614] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-2",
+      "method": "POST",
+      "url": "/auth/login",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:35585",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "68",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 51880
+    }
+    [35mrequestId[39m: "req-2"
+    [35mres[39m: {
+      "statusCode": 200,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 434
+[05:19:53.752] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-3",
+      "method": "POST",
+      "url": "/auth/register",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:38775",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "89",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 52530
+    }
+    [35mrequestId[39m: "req-3"
+    [35mres[39m: {
+      "statusCode": 201,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 301
+[05:19:54.028] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-4",
+      "method": "POST",
+      "url": "/auth/login",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:37355",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "63",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 42118
+    }
+    [35mrequestId[39m: "req-4"
+    [35mres[39m: {
+      "statusCode": 200,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 274
+[05:19:53.912] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-3",
+      "method": "POST",
+      "url": "/auth/login",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:37557",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "70",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 54006
+    }
+    [35mrequestId[39m: "req-3"
+    [35mres[39m: {
+      "statusCode": 200,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 327
+[05:19:54.082] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-3",
+      "method": "POST",
+      "url": "/cart/items",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:40225",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "65",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 38430
+    }
+    [35mrequestId[39m: "req-3"
+    [35mres[39m: {
+      "statusCode": 401,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 2
+[05:19:54.267] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-4",
+      "method": "GET",
+      "url": "/products",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:38739",
+        "accept-encoding": "gzip, deflate",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 49108
+    }
+    [35mrequestId[39m: "req-4"
+    [35mres[39m: {
+      "statusCode": 200,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 352
+[05:19:54.285] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-4",
+      "method": "POST",
+      "url": "/cart/items",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:41741",
+        "accept-encoding": "gzip, deflate",
+        "idempotency-key": "cart-error-test-invalid-variant",
+        "content-type": "application/json",
+        "content-length": "52",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 43454
+    }
+    [35mrequestId[39m: "req-4"
+    [35mres[39m: {
+      "statusCode": 400,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 200
+[05:19:54.463] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-5",
+      "method": "GET",
+      "url": "/products/440529c6-fddb-49fd-ac12-998e712fe31c",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:33283",
+        "accept-encoding": "gzip, deflate",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 36816
+    }
+    [35mrequestId[39m: "req-5"
+    [35mres[39m: {
+      "statusCode": 200,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 193
+[05:19:54.599] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-5",
+      "method": "POST",
+      "url": "/admin/products",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:40517",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "113",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 59586
+    }
+    [35mrequestId[39m: "req-5"
+    [35mres[39m: {
+      "statusCode": 201,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 566
+[05:19:54.602] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-6",
+      "method": "GET",
+      "url": "/cart",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:35889",
+        "accept-encoding": "gzip, deflate",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 34268
+    }
+    [35mrequestId[39m: "req-6"
+    [35mres[39m: {
+      "statusCode": 200,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 135
+[05:19:54.672] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-6",
+      "method": "POST",
+      "url": "/admin/products",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:43955",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "57",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 58398
+    }
+    [35mrequestId[39m: "req-6"
+    [35mres[39m: {
+      "statusCode": 403,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 66
+[05:19:54.675] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-7",
+      "method": "POST",
+      "url": "/admin/products",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:38671",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "52",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 39186
+    }
+    [35mrequestId[39m: "req-7"
+    [35mres[39m: {
+      "statusCode": 401,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 1
+[05:19:54.741] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-8",
+      "method": "POST",
+      "url": "/admin/products",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:41265",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "40",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 47852
+    }
+    [35mrequestId[39m: "req-8"
+    [35mres[39m: {
+      "statusCode": 400,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 65
+[05:19:54.619] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-5",
+      "method": "POST",
+      "url": "/cart/items",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:36245",
+        "accept-encoding": "gzip, deflate",
+        "idempotency-key": "cart-error-test-zero-qty",
+        "content-type": "application/json",
+        "content-length": "65",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 45524
+    }
+    [35mrequestId[39m: "req-5"
+    [35mres[39m: {
+      "statusCode": 400,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 329
+[05:19:54.894] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-6",
+      "method": "POST",
+      "url": "/cart/items",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:35079",
+        "accept-encoding": "gzip, deflate",
+        "idempotency-key": "cart-error-test-negative-qty",
+        "content-type": "application/json",
+        "content-length": "66",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 50152
+    }
+    [35mrequestId[39m: "req-6"
+    [35mres[39m: {
+      "statusCode": 400,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 269
+[05:19:55.341] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-9",
+      "method": "PUT",
+      "url": "/admin/products/845d0a3c-6d37-43d4-b048-3f49d6b7fa28",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:43461",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "46",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 58628
+    }
+    [35mrequestId[39m: "req-9"
+    [35mres[39m: {
+      "statusCode": 200,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 594
+[05:19:55.410] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-a",
+      "method": "PUT",
+      "url": "/admin/products/845d0a3c-6d37-43d4-b048-3f49d6b7fa28",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:45833",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "30",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 44024
+    }
+    [35mrequestId[39m: "req-a"
+    [35mres[39m: {
+      "statusCode": 403,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 66
+[05:19:55.481] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-b",
+      "method": "PUT",
+      "url": "/admin/products/00000000-0000-0000-0000-000000000000",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:44265",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "30",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 36404
+    }
+    [35mrequestId[39m: "req-b"
+    [35mres[39m: {
+      "statusCode": 404,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 67
+[05:19:55.549] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-c",
+      "method": "DELETE",
+      "url": "/admin/products/845d0a3c-6d37-43d4-b048-3f49d6b7fa28",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:45273",
+        "accept-encoding": "gzip, deflate",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 38482
+    }
+    [35mrequestId[39m: "req-c"
+    [35mres[39m: {
+      "statusCode": 403,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 63
+[05:19:55.541] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-7",
+      "method": "POST",
+      "url": "/cart/items",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:35935",
+        "accept-encoding": "gzip, deflate",
+        "idempotency-key": "cart-error-test-exceed-stock",
+        "content-type": "application/json",
+        "content-length": "67",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 49892
+    }
+    [35mrequestId[39m: "req-7"
+    [35mres[39m: {
+      "statusCode": 400,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 645
+[05:19:55.987] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-d",
+      "method": "DELETE",
+      "url": "/admin/products/845d0a3c-6d37-43d4-b048-3f49d6b7fa28",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:38985",
+        "accept-encoding": "gzip, deflate",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 52102
+    }
+    [35mrequestId[39m: "req-d"
+    [35mres[39m: {
+      "statusCode": 204,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 437
+[05:19:56.087] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-e",
+      "method": "DELETE",
+      "url": "/admin/products/845d0a3c-6d37-43d4-b048-3f49d6b7fa28",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:45257",
+        "accept-encoding": "gzip, deflate",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 54074
+    }
+    [35mrequestId[39m: "req-e"
+    [35mres[39m: {
+      "statusCode": 404,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 95
+[05:19:56.382] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-8",
+      "method": "POST",
+      "url": "/cart/items",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:43873",
+        "accept-encoding": "gzip, deflate",
+        "idempotency-key": "cart-error-test-valid-add",
+        "content-type": "application/json",
+        "content-length": "65",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 40992
+    }
+    [35mrequestId[39m: "req-8"
+    [35mres[39m: {
+      "statusCode": 201,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 836
+[05:19:55.680] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-7",
+      "method": "POST",
+      "url": "/cart/items",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:41581",
+        "accept-encoding": "gzip, deflate",
+        "idempotency-key": "e2e-cart-add",
+        "content-type": "application/json",
+        "content-length": "65",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 48158
+    }
+    [35mrequestId[39m: "req-7"
+    [35mres[39m: {
+      "statusCode": 201,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 1073
+[05:19:55.753] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-8",
+      "method": "GET",
+      "url": "/cart",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:43907",
+        "accept-encoding": "gzip, deflate",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 44794
+    }
+    [35mrequestId[39m: "req-8"
+    [35mres[39m: {
+      "statusCode": 200,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 67
+PASS test/admin-products.e2e-spec.ts (8.335 s)
+  ● Console
+
+    console.log
+      ✅ Database connected successfully
+
+      at Proxy.onModuleInit (../src/prisma/prisma.service.ts:26:13)
+          at async Promise.all (index 0)
+
+    console.log
+      🔌 Database connection closed
+
+      at Proxy.onModuleDestroy (../src/prisma/prisma.service.ts:31:13)
+          at async Promise.all (index 0)
+
+[05:19:57.160] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-9",
+      "method": "POST",
+      "url": "/orders",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:32931",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "259",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 52304
+    }
+    [35mrequestId[39m: "req-9"
+    [35mres[39m: {
+      "statusCode": 201,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 1404
+[05:19:57.201] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-a",
+      "method": "GET",
+      "url": "/orders",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:40439",
+        "accept-encoding": "gzip, deflate",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 46926
+    }
+    [35mrequestId[39m: "req-a"
+    [35mres[39m: {
+      "statusCode": 401,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 37
+[05:19:57.240] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-b",
+      "method": "GET",
+      "url": "/orders/34ba5ad8-5bd8-4218-9dc8-6d087eb1d164",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:41853",
+        "accept-encoding": "gzip, deflate",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 46124
+    }
+    [35mrequestId[39m: "req-b"
+    [35mres[39m: {
+      "statusCode": 401,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 34
+[05:19:57.277] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-c",
+      "method": "GET",
+      "url": "/cart",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:36779",
+        "accept-encoding": "gzip, deflate",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 36550
+    }
+    [35mrequestId[39m: "req-c"
+    [35mres[39m: {
+      "statusCode": 401,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 33
+[05:19:57.010] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-9",
+      "method": "POST",
+      "url": "/cart/items",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:45859",
+        "accept-encoding": "gzip, deflate",
+        "idempotency-key": "cart-error-test-idempotent",
+        "content-type": "application/json",
+        "content-length": "65",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 54826
+    }
+    [35mrequestId[39m: "req-9"
+    [35mres[39m: {
+      "statusCode": 404,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 626
+[05:19:57.020] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-a",
+      "method": "DELETE",
+      "url": "/cart/items/some-item-id",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:37061",
+        "accept-encoding": "gzip, deflate",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 38180
+    }
+    [35mrequestId[39m: "req-a"
+    [35mres[39m: {
+      "statusCode": 401,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 0
+[05:19:57.056] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-b",
+      "method": "DELETE",
+      "url": "/cart/items/00000000-0000-0000-0000-000000000000",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:42885",
+        "accept-encoding": "gzip, deflate",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 47546
+    }
+    [35mrequestId[39m: "req-b"
+    [35mres[39m: {
+      "statusCode": 401,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 34
+[05:19:57.094] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-c",
+      "method": "GET",
+      "url": "/cart",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:42491",
+        "accept-encoding": "gzip, deflate",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 34328
+    }
+    [35mrequestId[39m: "req-c"
+    [35mres[39m: {
+      "statusCode": 401,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 35
+[05:19:57.331] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-d",
+      "method": "POST",
+      "url": "/auth/register",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:37369",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "98",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 60828
+    }
+    [35mrequestId[39m: "req-d"
+    [35mres[39m: {
+      "statusCode": 201,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 232
+[05:19:57.593] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-e",
+      "method": "POST",
+      "url": "/auth/login",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:34883",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+        "content-length": "69",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 42740
+    }
+    [35mrequestId[39m: "req-e"
+    [35mres[39m: {
+      "statusCode": 200,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 260
+[05:19:57.704] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-f",
+      "method": "GET",
+      "url": "/cart",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:37723",
+        "accept-encoding": "gzip, deflate",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 35844
+    }
+    [35mrequestId[39m: "req-f"
+    [35mres[39m: {
+      "statusCode": 200,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 109
+[05:19:57.772] [32mINFO[39m: [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": "req-g",
+      "method": "GET",
+      "url": "/cart",
+      "query": {},
+      "headers": {
+        "host": "127.0.0.1:39085",
+        "accept-encoding": "gzip, deflate",
+        "connection": "close"
+      },
+      "remoteAddress": "::ffff:127.0.0.1",
+      "remotePort": 49590
+    }
+    [35mrequestId[39m: "req-g"
+    [35mres[39m: {
+      "statusCode": 401,
+      "headers": {}
+    }
+    [35mresponseTime[39m: 0
+PASS test/user-flow.e2e-spec.ts (9.563 s)
+  ● Console
+
+    console.log
+      ✅ Database connected successfully
+
+      at Proxy.onModuleInit (../src/prisma/prisma.service.ts:26:13)
+          at async Promise.all (index 0)
+
+    console.log
+      Access token set: YES
+
+      at Object.<anonymous> (user-flow.e2e-spec.ts:174:13)
+
+    console.log
+      🔌 Database connection closed
+
+      at Proxy.onModuleDestroy (../src/prisma/prisma.service.ts:31:13)
+          at async Promise.all (index 0)
+
+FAIL test/cart-error.e2e-spec.ts (9.726 s)
+  ● Console
+
+    console.log
+      ✅ Database connected successfully
+
+      at Proxy.onModuleInit (../src/prisma/prisma.service.ts:26:13)
+          at async Promise.all (index 0)
+
+    console.log
+      prisma:error 
+      Invalid `tx.cartItem.upsert()` invocation in
+      /home/mrrizaldi/dev/backend/ecommerce-api/src/cart/cart.service.ts:192:27
+      
+        189   );
+        190 }
+        191 
+      → 192 await tx.cartItem.upsert(
+      Foreign key constraint violated on the constraint: `cart_items_cart_id_fkey`
+
+      at Object.zc (../node_modules/.pnpm/@prisma+client@6.18.0_prisma@6.18.0_typescript@5.9.3__typescript@5.9.3/node_modules/@prisma/internals/src/logger.ts:13:11)
+
+    console.log
+      🔌 Database connection closed
+
+      at Proxy.onModuleDestroy (../src/prisma/prisma.service.ts:31:13)
+          at async Promise.all (index 0)
+
+  ● Cart Error Handling (e2e) › POST /cart/items - Error Cases › should handle idempotency - duplicate request should return same result
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected value: 404
+    Received array: [200, 201]
+
+      219 |
+      220 |       // Note: Due to test isolation issues, we accept various response codes
+    > 221 |       expect([200, 201]).toContain(firstResponse.status);
+          |                          ^
+      222 |
+      223 |       // Duplicate request with same idempotency key
+      224 |       const secondResponse = await request(server)
+
+      at Object.<anonymous> (cart-error.e2e-spec.ts:221:26)
+
+Test Suites: 1 failed, 3 passed, 4 total
+Tests:       1 failed, 34 passed, 35 total
+Snapshots:   0 total
+Time:        10.151 s
+Ran all test suites.
+ ELIFECYCLE  Command failed with exit code 1.
