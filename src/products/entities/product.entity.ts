@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Exclude } from 'class-transformer';
+import { ProductVariantEntity } from './product-variant.entity';
 
 export class ProductEntity {
   @ApiProperty()
@@ -22,6 +23,9 @@ export class ProductEntity {
 
   @ApiProperty()
   updatedAt!: Date;
+
+  @ApiProperty({ type: () => [ProductVariantEntity], required: false })
+  variants?: ProductVariantEntity[];
 
   @Exclude()
   deletedAt?: Date;

@@ -269,6 +269,9 @@ export class ProductsService {
   }
 
   private slugify(value: string) {
+    if (!value) {
+      return '';
+    }
     return value
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, '-')
@@ -332,6 +335,17 @@ export class ProductsService {
     const price = primaryVariant?.price ? Number(primaryVariant.price) : 0;
     const stock = primaryVariant?.inventoryStock?.quantity ?? 0;
 
+    const variants = product.variants?.map(variant => ({
+      id: variant.id,
+      sku: variant.sku,
+      title: variant.title ?? '',
+      price: Number(variant.price),
+      currency: variant.currency,
+      weightGrams: variant.weightGrams ?? undefined,
+      createdAt: variant.createdAt,
+      updatedAt: variant.updatedAt,
+    })) ?? [];
+
     return new ProductEntity({
       id: product.id,
       name: product.title,
@@ -340,6 +354,7 @@ export class ProductsService {
       stock,
       createdAt: product.createdAt,
       updatedAt: product.updatedAt,
+      variants,
     });
   }
 }

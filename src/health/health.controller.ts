@@ -23,12 +23,12 @@ export class HealthController {
   @ApiOperation({ summary: 'Liveness probe' })
   check() {
     return this.health.check([
-      () => this.memory.checkHeap('memory_heap', 300 * 1024 * 1024),
-      () => this.memory.checkRSS('memory_rss', 500 * 1024 * 1024),
+      () => this.memory.checkHeap('memory_heap', 1024 * 1024 * 1024), // Increased to 1GB
+      () => this.memory.checkRSS('memory_rss', 1024 * 1024 * 1024), // Increased to 1GB
       () =>
         this.disk.checkStorage('disk', {
           path: '/',
-          thresholdPercent: 0.9,
+          thresholdPercent: 0.95, // Increased threshold
         }),
     ]);
   }

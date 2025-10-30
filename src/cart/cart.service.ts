@@ -104,6 +104,12 @@ export class CartService {
     }
 
     const cartRecord = (await this.prisma.$transaction(async (tx) => {
+        // Validate UUID format
+        const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+        if (!uuidRegex.test(dto.variantId)) {
+          throw new BadRequestException('Invalid variant ID format');
+        }
+
         const variant = await tx.productVariant.findUnique({
           where: { id: dto.variantId },
           include: {
@@ -123,9 +129,23 @@ export class CartService {
           throw new BadRequestException('Variant is out of stock');
         }
 
+        if (dto.quantity <= 0) {
+          throw new BadRequestException('Quantity must be greater than 0');
+        }
+
         let cart = await this.findActiveCart(userId, tx);
 
         if (!cart) {
+          // Verify user exists before creating cart
+          const userExists = await tx.user.findUnique({
+            where: { id: userId },
+            select: { id: true }
+          });
+          
+          if (!userExists) {
+            throw new NotFoundException('User not found');
+          }
+
           cart = (await tx.cart.create({
             data: {
               userId,
@@ -221,6 +241,15 @@ export class CartService {
   }
 
   async removeItem(userId: string, itemId: string): Promise<CartEntity> {
+    // Validate UUID format
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+    if (!uuidRegex.test(userId)) {
+      throw new BadRequestException('Invalid user ID format');
+    }
+    if (!uuidRegex.test(itemId)) {
+      throw new BadRequestException('Invalid item ID format');
+    }
+
     const cacheKey = this.buildCacheKey(userId);
     const cart = await this.prisma.cart.findFirst({
       where: { userId, isCheckedOut: false },
