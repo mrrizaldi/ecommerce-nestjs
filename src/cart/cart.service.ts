@@ -6,7 +6,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
-import type { CacheStore } from 'cache-manager';
+import type { Cache } from 'cache-manager';
 import { ConfigService } from '@nestjs/config';
 import { Prisma } from '@prisma/client';
 import { createHash } from 'crypto';
@@ -16,20 +16,7 @@ import { CartItemEntity } from './entities/cart-item.entity';
 import { PrismaService } from '../prisma/prisma.service';
 
 type PrismaExecutor = PrismaService | Prisma.TransactionClient;
-type CartWithItems = Prisma.CartGetPayload<{
-  include: {
-    items: {
-      include: {
-        variant: {
-          include: {
-            product: { select: { id: true; title: true } };
-            inventoryStock: true;
-          };
-        };
-      };
-    };
-  };
-}>;
+type CartWithItems = any;
 
 @Injectable()
 export class CartService {
@@ -56,7 +43,7 @@ export class CartService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly configService: ConfigService,
-    @Inject(CACHE_MANAGER) private readonly cacheManager: CacheStore,
+    @Inject(CACHE_MANAGER) private readonly cacheManager: Cache,
   ) {
     const ttlSeconds = this.configService.get<number>('CACHE_TTL_SECONDS', 60);
     this.cacheTtlMs = Math.max(ttlSeconds, 1) * 1000;
@@ -75,9 +62,7 @@ export class CartService {
     await this.cacheManager.set(
       cacheKey,
       this.serializeCart(cartEntity),
-      {
-        ttl: this.cacheTtlMs,
-      },
+      this.cacheTtlMs,
     );
 
     return cartEntity;
@@ -111,15 +96,14 @@ export class CartService {
           await this.cacheManager.set(
             cacheKey,
             existing.response,
-            { ttl: this.cacheTtlMs },
+            this.cacheTtlMs,
           );
           return restored;
         }
       }
     }
 
-    const cartRecord = await this.prisma.$transaction<CartWithItems>(
-      async (tx) => {
+    const cartRecord = (await this.prisma.$transaction(async (tx) => {
         const variant = await tx.productVariant.findUnique({
           where: { id: dto.variantId },
           include: {
@@ -142,13 +126,13 @@ export class CartService {
         let cart = await this.findActiveCart(userId, tx);
 
         if (!cart) {
-          cart = await tx.cart.create({
+          cart = (await tx.cart.create({
             data: {
               userId,
               currency: variant.currency,
             },
             include: this.cartInclude,
-          });
+          })) as CartWithItems;
         } else if (cart.currency && cart.currency !== variant.currency) {
           throw new BadRequestException(
             'Cart currency does not match variant currency',
@@ -210,16 +194,13 @@ export class CartService {
           throw new NotFoundException('Cart not found after update');
         }
 
-        return updatedCart;
-      },
-    );
+        return updatedCart as CartWithItems;
+      })) as CartWithItems;
 
     const cartEntity = this.toCartEntity(cartRecord, userId);
     const serializedCart = this.serializeCart(cartEntity);
 
-    await this.cacheManager.set(cacheKey, serializedCart, {
-      ttl: this.cacheTtlMs,
-    });
+    await this.cacheManager.set(cacheKey, serializedCart, this.cacheTtlMs);
 
     if (idempotencyKey) {
       await this.prisma.idempotencyKey.upsert({
@@ -266,9 +247,11 @@ export class CartService {
     });
 
     const cartEntity = this.toCartEntity(updatedCart, userId);
-    await this.cacheManager.set(cacheKey, this.serializeCart(cartEntity), {
-      ttl: this.cacheTtlMs,
-    });
+    await this.cacheManager.set(
+      cacheKey,
+      this.serializeCart(cartEntity),
+      this.cacheTtlMs,
+    );
 
     return cartEntity;
   }
@@ -284,7 +267,7 @@ export class CartService {
     return executor.cart.findFirst({
       where: { userId, isCheckedOut: false },
       include: this.cartInclude,
-    });
+    }) as Promise<CartWithItems | null>;
   }
 
   private toCartEntity(
@@ -296,7 +279,7 @@ export class CartService {
     }
 
     const items =
-      cart.items?.map((item) => {
+      cart.items?.map((item: any) => {
         const price = Number(item.variant.price);
         const subtotal = price * item.quantity;
         return new CartItemEntity({
@@ -313,8 +296,14 @@ export class CartService {
         });
       }) ?? [];
 
-    const totalQuantity = items.reduce((sum, current) => sum + current.quantity, 0);
-    const subtotalAmount = items.reduce((sum, current) => sum + current.subtotal, 0);
+    const totalQuantity = items.reduce(
+      (sum: number, current: CartItemEntity) => sum + current.quantity,
+      0,
+    );
+    const subtotalAmount = items.reduce(
+      (sum: number, current: CartItemEntity) => sum + current.subtotal,
+      0,
+    );
 
     return new CartEntity({
       id: cart.id,

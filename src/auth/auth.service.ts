@@ -61,7 +61,11 @@ export class AuthService {
   }
 
   async buildAuthResponse(user: SanitizedUser) {
-    const payload: JwtPayload = { sub: user.id, email: user.email };
+    const payload: JwtPayload = {
+      sub: user.id,
+      email: user.email,
+      role: user.role,
+    };
     const { accessToken, refreshToken } = await this.generateTokens(payload);
 
     return {

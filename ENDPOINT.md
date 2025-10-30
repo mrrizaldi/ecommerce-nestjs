@@ -44,7 +44,7 @@ Fokus pada **performa**, **keamanan**, dan **skalabilitas**. Endpoint inti ini m
 | Method   | Endpoint             | Deskripsi                                                                                                                                |
 | -------- | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
 | **POST** | `/orders`            | Buat pesanan baru. Validasi alamat, stok, dan total harga. Terapkan **idempotency key**. Simpan order dalam status `PENDING_PAYMENT`.    |
-| **POST** | `/payments/callback` | Callback dari gateway pembayaran. **Idempotent**, memperbarui status order, dan men-trigger pengurangan stok dalam transaksi terisolasi. |
+| **POST** | `/payments/callback` | Callback dari gateway pembayaran. **Idempotent**, memperbarui status order, dan men-trigger pengurangan stok dalam transaksi terisolasi. **NOTE:** Endpoint belum diimplementasikan. |
 | **GET**  | `/orders/:orderId`   | Lihat detail pesanan. Hanya pemilik pesanan yang dapat mengakses.                                                                        |
 | **GET**  | `/orders`            | Menampilkan daftar pesanan user dengan filter status.                                                                                    |
 
